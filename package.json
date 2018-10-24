@@ -1,0 +1,65 @@
+{
+  "name": "pi-screen",
+  "version": "1.0.0",
+  "description": "Simple home screen app powered by electron",
+  "main": "main.js",
+  "scripts": {
+    "dev-server": "webpack-dev-server --config webpack.dev.js",
+    "electron": "electron .",
+    "dev": "./script/dev.sh",
+    "build": "webpack --config webpack.prod.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lonord/pi-screen.git"
+  },
+  "keywords": [
+    "raspberrypi",
+    "screen",
+    "electron"
+  ],
+  "author": "Loy B. <lonord.b@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lonord/pi-screen/issues"
+  },
+  "homepage": "https://github.com/lonord/pi-screen#readme",
+  "devDependencies": {
+    "@babel/core": "7.0.0",
+    "@babel/plugin-proposal-class-properties": "7.0.0",
+    "@babel/plugin-proposal-decorators": "7.0.0",
+    "@babel/polyfill": "7.0.0",
+    "@babel/preset-env": "7.0.0",
+    "@babel/preset-react": "7.0.0",
+    "@babel/preset-typescript": "7.0.0",
+    "@types/classnames": "^2.2.6",
+    "@types/ms": "^0.7.30",
+    "@types/react": "^16.4.12",
+    "@types/react-dom": "^16.0.7",
+    "babel-loader": "^8.0.0-beta.2",
+    "classnames": "^2.2.6",
+    "clean-webpack-plugin": "^0.1.19",
+    "css-loader": "^1.0.0",
+    "electron": "^3.0.4",
+    "emotion": "^9.2.12",
+    "file-loader": "^2.0.0",
+    "fork-ts-checker-webpack-plugin": "^0.4.2",
+    "html-webpack-plugin": "^3.2.0",
+    "mobx": "^5.1.0",
+    "mobx-react": "^5.2.8",
+    "ms": "^2.1.1",
+    "normalize.css": "^8.0.0",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
+    "react-hot-loader": "^4.3.5",
+    "style-loader": "^0.23.0",
+    "tslint": "^5.11.0",
+    "tslint-react": "^3.6.0",
+    "typescript": "^3.0.1",
+    "typescript-styled-plugin": "^0.10.0",
+    "webpack": "^4.17.1",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.6",
+    "webpack-merge": "^4.1.4"
+  }
+}
