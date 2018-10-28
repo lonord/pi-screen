@@ -3,7 +3,8 @@ import 'normalize.css'
 import { injectGlobal } from 'emotion'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import App from './app'
+import Store from './store/WebStore'
+import App from './web/WebApp'
 
 injectGlobal`
 	html, body, #root {
@@ -20,4 +21,5 @@ if (!rootEl) {
 	rootEl.id = 'root'
 	document.body.appendChild(rootEl)
 }
-ReactDOM.render(<App />, rootEl)
+const store = new Store()
+ReactDOM.render(<App store={store} />, rootEl)

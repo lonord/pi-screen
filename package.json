@@ -2,12 +2,14 @@
   "name": "pi-screen",
   "version": "1.0.0",
   "description": "Simple home screen app powered by electron",
-  "main": "main.js",
+  "main": "main/main.js",
   "scripts": {
-    "dev-server": "webpack-dev-server --config webpack.dev.js",
-    "electron": "electron .",
-    "dev": "./script/dev.sh",
-    "build": "webpack --config webpack.prod.js"
+    "electron": "NODE_ENV=development electron .",
+    "dev-renderer": "webpack-dev-server --config webpack.electron.js",
+    "dev-web": "webpack-dev-server --config webpack.web.js",
+    "build-renderer": "NODE_ENV=production webpack --config webpack.electron.js",
+    "build-web": "NODE_ENV=production webpack --config webpack.web.js",
+    "buile": "npm run build-renderer && npm run build-web"
   },
   "repository": {
     "type": "git",
@@ -36,6 +38,7 @@
     "@types/ms": "^0.7.30",
     "@types/react": "^16.4.12",
     "@types/react-dom": "^16.0.7",
+    "@types/socket.io-client": "^1.4.32",
     "babel-loader": "^8.0.0-beta.2",
     "classnames": "^2.2.6",
     "clean-webpack-plugin": "^0.1.19",
@@ -61,5 +64,13 @@
     "webpack-cli": "^3.1.0",
     "webpack-dev-server": "^3.1.6",
     "webpack-merge": "^4.1.4"
+  },
+  "dependencies": {
+    "cors": "^2.8.4",
+    "express": "^4.16.4",
+    "mkdirp": "^0.5.1",
+    "socket.io": "^2.1.1",
+    "socket.io-client": "^2.1.1",
+    "sqlite3": "^4.0.3"
   }
 }
