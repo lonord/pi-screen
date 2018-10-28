@@ -106,9 +106,11 @@ export default class Store {
 	async reorderReminder(id: number, leftOrderIndex: number, rightOrderIndex: number) {
 		const newOrderIndex = leftOrderIndex <= 0
 			? rightOrderIndex / 2
-			: rightOrderIndex <= 0
-				? leftOrderIndex + 0.5
-				: (rightOrderIndex + leftOrderIndex) / 2
+			: rightOrderIndex > 0
+				? (rightOrderIndex + leftOrderIndex) / 2
+				: Math.ceil(leftOrderIndex) === leftOrderIndex
+					? leftOrderIndex + 0.5
+					: (Math.ceil(leftOrderIndex) + leftOrderIndex) / 2
 		await this.wsCall('updateReminder', id, {
 			orderIndex: newOrderIndex
 		})
