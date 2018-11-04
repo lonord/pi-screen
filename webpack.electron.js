@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const pkg = require('./package.json');
 
 const output = 'dist_renderer'
 
@@ -102,7 +103,6 @@ if (process.env.NODE_ENV !== 'production') {
 } else {
 	config.mode = 'production'
 	config.plugins.push(
-		new UglifyJSPlugin(),
 		new webpack.DefinePlugin({
 			'process.env.NODE_ENV': JSON.stringify('production'),
 			'PKG_VERSION': JSON.stringify('v' + pkg.version)
