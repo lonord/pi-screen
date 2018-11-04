@@ -21,6 +21,10 @@ function createWindow() {
 		mainWindow.loadFile('dist_renderer/index.html')
 	}
 
+	if (process.env.PI_SCREEN_FULL) {
+		mainWindow.setKiosk(true)
+	}
+
 	// Open the DevTools.
 	// mainWindow.webContents.openDevTools()
 
