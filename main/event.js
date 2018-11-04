@@ -20,12 +20,12 @@ module.exports = () => {
 			}
 		},
 		onOnlineUserChange: (fn) => {
-			emitter.on(EVENT_REMINDER_UPDATE, fn)
+			emitter.on(EVENT_ONLINE_USER_CHANGE, fn)
 		},
 		emitOnlineUserChange: (...args) => {
 			for (const em of emitters) {
 				if (em !== emitter) {
-					em.emit(EVENT_REMINDER_UPDATE, ...args)
+					em.emit(EVENT_ONLINE_USER_CHANGE, ...args)
 				}
 			}
 		},

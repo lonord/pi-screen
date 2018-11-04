@@ -13,6 +13,9 @@ injectGlobal`
 	body {
 		font-family: -apple-system, BlinkMacSystemFont, "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	}
+	* {
+		box-sizing: border-box;
+	}
 `
 
 let rootEl = document.getElementById('root')

@@ -49,7 +49,7 @@ function createWindow() {
 		ipcEmitter.emitReminderUpdate()
 		return 'OK'
 	});
-	ipc.answerRenderer('findReminders', async (skip, count, complete) => {
+	ipc.answerRenderer('findReminders', async ([skip, count, complete]) => {
 		const list = await dataService.findReminders(skip, count, complete)
 		return list
 	});

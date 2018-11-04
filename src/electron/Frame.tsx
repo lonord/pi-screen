@@ -1,22 +1,43 @@
+import classNames from 'classnames'
 import { css } from 'emotion'
-import { inject, observer } from 'mobx-react'
 import * as React from 'react'
-import Store from '../store/ElectronStore'
+import { flexHorizental, flexItemAdaptive, flexVertical } from '../style/flex'
+import Content from './Content'
+import Header from './Header'
+import SideBar from './SideBar'
 
-export interface FrameProps {
-	store?: Store
-}
+const Frame: React.SFC = () => (
+	<div className={classNames(flexVertical, selfStyle)}>
+		<Header />
+		<div className={classNames(flexItemAdaptive, flexHorizental)}>
+			<Content />
+			<SideBar />
+		</div>
+		{/* <div>{'online user count ' + onlineUserCount}</div>
+				{store.reminders.map((reminder) => (
+					<div key={reminder.id}>
+						<span>{reminder.content}</span>
+						<span>,</span>
+						<span>{reminder.comment}</span>
+					</div>
+				))}
+				<div>
+					{store.reminderPageIndex > 0
+						? <button onClick={() => store.fetchFirstPageReminders()}>first</button>
+						: null}
+					{store.reminderPageIndex > 0
+						? <button onClick={() => store.fetchPrevPageReminders()}>prev</button>
+						: null}
+					<span>{store.reminderPageIndex + 1}</span>
+					{store.reminderHasMore
+						? <button onClick={() => store.fetchNextPageReminders()}>next</button>
+						: null}
+				</div> */}
+	</div>
+)
 
-@inject('store')
-@observer
-export default class Frame extends React.Component<FrameProps, any> {
-	render() {
-		const { store } = this.props
-		const onlineUserCount = store ? store.onlineUserCount : 0
-		return (
-			<div>
-				online user count {onlineUserCount}
-			</div>
-		)
-	}
-}
+const selfStyle = css`
+	height: 100%;
+`
+
+export default Frame
