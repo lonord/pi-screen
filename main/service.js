@@ -51,16 +51,16 @@ exports.createService = () => {
 					throw new Error('Unknow peoperty ' + name)
 				}
 				fragments.push(`${name}=?`)
-				values.push(reminder[name])
+				values.push(props[name])
 			}
 			values.push(id)
 			const sql = `update reminder set ${fragments.join(',')} where id=?`
-			const count = await db.execute(sql, values)
-			return count
+			const result = await db.execute(sql, values)
+			return result.changes
 		},
 		removeReminder: async (id) => {
-			const count = await db.execute(`delete from reminder where id=?`, id)
-			return count
+			const result = await db.execute(`delete from reminder where id=?`, id)
+			return result.changes
 		},
 		findReminders: async (skip, count, complete) => {
 			const where = `where ${REMINDER.COMPLETE}=${complete ? 1 : 0}`

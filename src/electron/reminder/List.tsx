@@ -13,6 +13,7 @@ const ReminderList: React.SFC<{ store?: Store }> = ({ store }) => (
 				key={reminder.id}
 				reminder={reminder}
 				showUnderscore={idx > 0}
+				onComplete={() => store.completeReminder(reminder.id)}
 				size="20%" />
 		))}
 	</div>

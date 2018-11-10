@@ -56,7 +56,7 @@ const config = {
 				use: ['file-loader']
 			}, {
 				test: /\.(woff|woff2|svg|eot|ttf)\??.*$/,
-				use: ['file-loader?outputPath=files/']
+				use: ['file-loader?outputPath=files/&name=[name].[ext]']
 			}
 		]
 	},

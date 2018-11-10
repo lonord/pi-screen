@@ -43,7 +43,7 @@ function createWindow() {
 		ipcEmitter.emitReminderUpdate()
 		return 'OK'
 	});
-	ipc.answerRenderer('updateReminder', async (id, props) => {
+	ipc.answerRenderer('updateReminder', async ([id, props]) => {
 		await dataService.updateReminder(id, props)
 		ipcEmitter.emitReminderUpdate()
 		return 'OK'

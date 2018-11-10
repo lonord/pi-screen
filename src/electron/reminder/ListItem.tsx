@@ -9,6 +9,7 @@ export interface ReminderListItemProps {
 	reminder: Reminder
 	size: any
 	showUnderscore?: boolean
+	onComplete(): void
 }
 
 interface ReminderListItemState {
@@ -28,7 +29,7 @@ class ReminderListItem extends React.Component<ReminderListItemProps, ReminderLi
 		this.setState({
 			checked: true
 		}, () => setTimeout(() => {
-			console.log('complete')
+			this.props.onComplete()
 		}, 800))
 	}
 

@@ -4,14 +4,21 @@ import { action, computed, configure, observable, runInAction } from 'mobx'
 import { Reminder } from './types'
 
 const PAGE_SIZE = 5
+const UNDO_TIMEOUT = 5000
 
 configure({ enforceActions: 'always' })
 
+declare type Fn = () => void
+
 export default class Store {
+
+	undoTimer: any = null
+
 	@observable onlineUserCount: number = 0
 	@observable reminders: Reminder[] = []
 	@observable reminderPageIndex: number = 0
 	@observable reminderHasMore: boolean = false
+	@observable undoReminderId: number = -1
 
 	constructor() {
 		ipcRenderer.on('onReminderUpdate', () => this.onReminderUpdate())
@@ -76,6 +83,7 @@ export default class Store {
 		})
 	}
 
+	@action.bound
 	async fetchFirstPageReminders() {
 		const result = await this.fetchReminders(0)
 		runInAction(() => {
@@ -83,6 +91,38 @@ export default class Store {
 			this.reminderHasMore = result.hasMore
 			this.reminderPageIndex = 0
 		})
+	}
+
+	@action.bound
+	async completeReminder(id: number) {
+		await ipc.callMain('updateReminder', [id, { complete: true }])
+		await this.fetchCurrentPageReminders()
+		if (this.undoTimer) {
+			clearTimeout(this.undoTimer)
+			this.undoTimer = null
+		}
+		runInAction(() => {
+			this.undoReminderId = id
+		})
+		this.undoTimer = setTimeout(action(() => {
+			this.undoReminderId = -1
+			this.undoTimer = null
+		}), UNDO_TIMEOUT)
+	}
+
+	@action.bound
+	async undoCompleteReminder() {
+		if (this.undoReminderId !== -1) {
+			await ipc.callMain('updateReminder', [this.undoReminderId, { complete: false }])
+			await this.fetchCurrentPageReminders()
+			if (this.undoTimer) {
+				clearTimeout(this.undoTimer)
+				this.undoTimer = null
+			}
+			runInAction(() => {
+				this.undoReminderId = -1
+			})
+		}
 	}
 
 	@action.bound
