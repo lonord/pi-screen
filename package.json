@@ -9,7 +9,7 @@
     "dev-web": "webpack-dev-server --config webpack.web.js",
     "build-renderer": "NODE_ENV=production webpack --config webpack.electron.js",
     "build-web": "NODE_ENV=production webpack --config webpack.web.js",
-    "buile": "npm run build-renderer && npm run build-web"
+    "build": "npm run build-renderer && npm run build-web"
   },
   "repository": {
     "type": "git",
