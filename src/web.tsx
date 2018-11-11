@@ -4,6 +4,7 @@ import { injectGlobal } from 'emotion'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import Store from './store/WebStore'
+import { getRootElement } from './util/dom'
 import App from './web/WebApp'
 
 injectGlobal`
@@ -15,11 +16,5 @@ injectGlobal`
 	}
 `
 
-let rootEl = document.getElementById('root')
-if (!rootEl) {
-	rootEl = document.createElement('div')
-	rootEl.id = 'root'
-	document.body.appendChild(rootEl)
-}
 const store = new Store()
-ReactDOM.render(<App store={store} />, rootEl)
+ReactDOM.render(<App store={store} />, getRootElement())

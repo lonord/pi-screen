@@ -125,6 +125,11 @@ export default class Store {
 		}
 	}
 
+	async getWebServerUrls(): Promise<string[]> {
+		const urls = await ipc.callMain('getWebServerUrls')
+		return urls
+	}
+
 	@action.bound
 	onReminderUpdate() {
 		this.fetchCurrentPageReminders()

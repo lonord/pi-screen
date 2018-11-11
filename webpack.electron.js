@@ -53,7 +53,7 @@ const config = {
 				use: ['style-loader', 'css-loader']
 			}, {
 				test: /\.(png|svg|jpg|gif)$/,
-				use: ['file-loader']
+				use: ['file-loader?outputPath=images/&name=[name].[ext]']
 			}, {
 				test: /\.(woff|woff2|svg|eot|ttf)\??.*$/,
 				use: ['file-loader?outputPath=files/&name=[name].[ext]']

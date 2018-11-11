@@ -1,11 +1,13 @@
 import 'normalize.css'
 import './font/yh.ttf'
+import './image/spin.gif'
 
 import { injectGlobal } from 'emotion'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import App from './electron/ElectronApp'
 import Store from './store/ElectronStore'
+import { getRootElement } from './util/dom'
 
 injectGlobal`
 	@font-face {
@@ -23,11 +25,5 @@ injectGlobal`
 	}
 `
 
-let rootEl = document.getElementById('root')
-if (!rootEl) {
-	rootEl = document.createElement('div')
-	rootEl.id = 'root'
-	document.body.appendChild(rootEl)
-}
 const store = new Store()
-ReactDOM.render(<App store={store}/>, rootEl)
+ReactDOM.render(<App store={store} />, getRootElement())

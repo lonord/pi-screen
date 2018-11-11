@@ -73,8 +73,9 @@ module.exports = (service, port) => {
 			const ifs = os.networkInterfaces()
 			return Object.keys(ifs)
 				.map((ifname) => ifs[ifname])
-				.filter((ifinfos) => ifinfos.filter((ifinfo) => ifinfo.family === 'IPv4' && !ifinfo.internal).length > 0)
-				.map((ifinfos) => ifinfos[0].address)
+				.map((ifinfos) => ifinfos.filter((ifinfo) => ifinfo.family === 'IPv4' && !ifinfo.internal)[0])
+				.filter((ifinfos) => !!ifinfos)
+				.map((ifinfos) => ifinfos.address)
 				.map((addr) => `http://${addr}:${port}`)
 		}
 	}
