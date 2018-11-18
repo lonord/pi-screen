@@ -45,8 +45,12 @@ class ReminderListItem extends React.Component<ReminderListItemProps, ReminderLi
 					mainAreaStyle,
 					showUnderscore ? underscoreStyle : null
 				)}>
-					<div className={classNames(flexVertical, contentTextWrapperStyle)}>
-						<div className={contentTextStyle}>
+					<div className={classNames(
+						flexVertical,
+						contentTextWrapperStyle,
+						!reminder.comment ? contentTextWrapperLargeStyle : null
+					)}>
+						<div className={contentTextStyle} style={!reminder.comment ? { fontSize: '22px' } : null}>
 							{reminder.level === ReminderLevel.EMERGENCY
 								? <span className={classNames(levelMarkStyle, levelMarkEmeStyle)}>!</span>
 								: null}
@@ -92,7 +96,13 @@ const sideAreaTextStyle = css`
 
 const contentTextWrapperStyle = css`
 	height: 44px;
+	line-height: 22px;
 	justify-content: center;
+`
+
+const contentTextWrapperLargeStyle = css`
+	height: 60px;
+	line-height: 30px;
 `
 
 const contentTextStyle = css`
@@ -111,6 +121,7 @@ const commentTextStyle = css`
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
+	padding-top: 4px;
 `
 
 const underscoreStyle = css`
@@ -125,8 +136,10 @@ const levelMarkStyle = css`
 
 const levelMarkEmeStyle = css`
 	color: red;
+	font-weight: bold;
 `
 
 const levelMarkNonEmeStyle = css`
 	color: #ccc;
+	font-weight: bold;
 `

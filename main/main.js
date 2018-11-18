@@ -12,7 +12,7 @@ let mainWindow
 
 function createWindow() {
 	// Create the browser window.
-	mainWindow = new BrowserWindow({ width: 800, height: 480, title: 'Pi Screen' })
+	mainWindow = new BrowserWindow({ width: 800, height: 480, title: 'Loading...', frame: false })
 
 	// and load the index.html of the app.
 	if (process.env.NODE_ENV === 'development') {

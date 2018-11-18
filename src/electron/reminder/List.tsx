@@ -7,15 +7,17 @@ import { flexItemAdaptive, flexVertical } from '../../style/flex'
 import ReminderListItem from './ListItem'
 
 const ReminderList: React.SFC<{ store?: Store }> = ({ store }) => (
-	<div className={classNames(flexItemAdaptive, flexVertical, selfStyle)}>
-		{store.reminders.map((reminder, idx) => (
-			<ReminderListItem
-				key={reminder.id}
-				reminder={reminder}
-				showUnderscore={idx > 0}
-				onComplete={() => store.completeReminder(reminder.id)}
-				size="20%" />
-		))}
+	<div className={classNames(flexItemAdaptive, selfStyle)}>
+		<div className={wrapStyle}>
+			{store.reminders.map((reminder, idx) => (
+				<ReminderListItem
+					key={reminder.id}
+					reminder={reminder}
+					showUnderscore={idx > 0}
+					onComplete={() => store.completeReminder(reminder.id)}
+					size="20%" />
+			))}
+		</div>
 	</div>
 )
 
@@ -23,4 +25,8 @@ export default inject('store')(observer(ReminderList))
 
 const selfStyle = css`
 	border-bottom: 1px solid #ccc;
+`
+
+const wrapStyle = css`
+	height: 368px;
 `
